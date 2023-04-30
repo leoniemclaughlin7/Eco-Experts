@@ -1,0 +1,15 @@
+.row {
+    padding-left: 40px;
+}
+
+.row div {
+    border: 1px solid black;
+    height: 115px;
+    width: 175px;
+    display: inline-block;
+}
+
+.row img {
+    height: 115px;
+    width: 175px;
+}
