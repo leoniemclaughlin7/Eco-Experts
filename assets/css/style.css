@@ -13,3 +13,10 @@
     height: 115px;
     width: 175px;
 }
+
+/* Dice Roll */
+#dice-roll {
+    display: flex;
+    justify-content: center;
+
+}

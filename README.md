@@ -37,3 +37,6 @@ You can now use the `heroku` CLI program - try running `heroku apps` to confirm 
 ---
 
 Happy coding!
+
+credits images 
+dice https://pngimg.com/image/54814 
