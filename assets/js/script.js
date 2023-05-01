@@ -28,8 +28,10 @@ function rollDice() {
 }
 
 let pieceOne = document.getElementById('piece-one');
+let pieceTwo = document.getElementById('piece-two');
 let squares = document.getElementsByClassName('board-square');
-let currentPosition = 0;
+let currentPosition1 = 0;
+let currentPosition2 = 0;
 const board = [
     'recharge',
     'city-garden',
@@ -45,17 +47,33 @@ const board = [
     'habitat-survey'
 ];
 
+const players = ['player1', 'player2'];
+let currentPlayer = players[0];
+
 function movePiece() {
     let diceRoll = rollDice();
-    currentPosition += diceRoll;
-    if (currentPosition >= board.length) {
-        currentPosition -= board.length;
+    if (currentPlayer === 'player1') {
+        currentPosition1 += diceRoll;
+        if (currentPosition1 >= board.length) {
+            currentPosition1 -= board.length;
+        }
+        let currentSquare = squares[currentPosition1];
+        currentSquare.appendChild(pieceOne);
+        currentPlayer = players[1];
+    } else {
+        currentPosition2 += diceRoll;
+        if (currentPosition2 >= board.length) {
+            currentPosition2 -= board.length;
+        }
+        let currentSquare = squares[currentPosition2];
+        currentSquare.appendChild(pieceTwo);
+        currentPlayer = players[0];
     }
-    let currentSquare = squares[currentPosition];
-    currentSquare.appendChild(pieceOne);
-    console.log(pieceOne);
-
 }
+
+
+
+
 
 
 
