@@ -1,3 +1,20 @@
+function getUserInput() {
+    document.getElementById('user-input').addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            let input = document.getElementById('user-input').value;
+            event.currentTarget.value = "";
+            console.log(input);
+            return input;
+
+
+        }
+    });
+}
+
+getUserInput();
+let message = document.getElementById('game-message');
+
+
 
 let roll = document.getElementById('roll');
 roll.addEventListener('click', rollDice);
@@ -7,7 +24,7 @@ function rollDice() {
     let randomNum = Math.floor(Math.random() * 6) + 1;
     let dice = document.getElementById("dice");
 
-    dice.innerHTML = randomNum;
+    dice.innerHTML = `You rolled: ${randomNum}`;
 
     if (randomNum === 1) {
         document.getElementById("img").src = "assets/images/dice1.jfif";
