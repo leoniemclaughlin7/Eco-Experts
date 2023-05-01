@@ -1,15 +1,32 @@
-.row {
-    padding-left: 40px;
+#game-output {
+    display: flex;
+    justify-content: center;
 }
 
-.row>div {
+#game-area {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 0px 0 0px 0;
+    position: relative;
+    padding-left: 100px;
+
+}
+
+#output {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 0 0 150px;
+}
+
+
+#game-area>div {
     border: 1px solid black;
     height: 115px;
     width: 175px;
-    display: inline-block;
 }
 
-.row img {
+#game-area img {
     height: 115px;
     width: 175px;
     z-index: -1;
@@ -17,8 +34,6 @@
 }
 
 .board-square {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
     position: relative;
 }
 
@@ -40,10 +55,4 @@
     background-color: rgb(250, 5, 5);
     height: 35px;
     width: 35px;
-}
-
-/* Dice Roll */
-#dice-roll {
-    display: flex;
-    justify-content: center;
 }
