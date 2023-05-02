@@ -1,19 +1,30 @@
+
 function getUserInput() {
-    document.getElementById('user-input').addEventListener('keydown', function (event) {
-        if (event.key === 'Enter') {
-            let input = document.getElementById('user-input').value;
-            event.currentTarget.value = "";
+    return new Promise(function (resolve) {
+        document.getElementById("user-input").addEventListener("keydown", function (event) {
+            if (event.key !== "Enter") { return; } 
+            let input = this.value; 
             console.log(input);
-            return input;
-
-
-        }
+            resolve(input); 
+        });
+        document.getElementById("user-input").value = "";
     });
+
 }
 
-getUserInput();
 let message = document.getElementById('game-message');
+// async allows the use of the "await" keyword
+async function setPlayers() {
+    message.innerHTML = `<p>Name of player One?</p>`;
+    let player1 = await getUserInput();
+    message.innerHTML = `<p>Name of player Two</p>`;
+    let player2 = await getUserInput();
+    const players = [];
+    players.push(player1, player2);
+    console.log(players);
+}
 
+setPlayers();
 
 
 let roll = document.getElementById('roll');
