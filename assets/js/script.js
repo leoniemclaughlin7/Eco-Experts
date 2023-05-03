@@ -2,10 +2,10 @@
 function getUserInput() {
     return new Promise(function (resolve) {
         document.getElementById("user-input").addEventListener("keydown", function (event) {
-            if (event.key !== "Enter") { return; } 
-            let input = this.value; 
+            if (event.key !== "Enter") { return; }
+            let input = this.value;
             console.log(input);
-            resolve(input); 
+            resolve(input);
         });
         document.getElementById("user-input").value = "";
     });
@@ -21,16 +21,13 @@ async function setPlayers() {
     let player2 = await getUserInput();
     const players = [];
     players.push(player1, player2);
-    console.log(players);
+    return players;
+
 }
-
-setPlayers();
-
 
 let roll = document.getElementById('roll');
 roll.addEventListener('click', rollDice);
 roll.addEventListener('click', movePiece);
-
 function rollDice() {
     let randomNum = Math.floor(Math.random() * 6) + 1;
     let dice = document.getElementById("dice");
@@ -58,8 +55,8 @@ function rollDice() {
 let pieceOne = document.getElementById('piece-one');
 let pieceTwo = document.getElementById('piece-two');
 let squares = document.getElementsByClassName('board-square');
-let currentPosition1 = 0;
-let currentPosition2 = 0;
+var currentPosition1 = 0;
+var currentPosition2 = 0;
 const board = [
     'recharge',
     'city-garden',
@@ -75,18 +72,16 @@ const board = [
     'habitat-survey'
 ];
 
-const players = ['player1', 'player2'];
-let currentPlayer = players[0];
-
 function movePiece() {
     let diceRoll = rollDice();
-    if (currentPlayer === 'player1') {
+    if (currentPlayer === players[0]) {
         currentPosition1 += diceRoll;
         if (currentPosition1 >= board.length) {
             currentPosition1 -= board.length;
         }
         let currentSquare = squares[currentPosition1];
         currentSquare.appendChild(pieceOne);
+        message.innerHTML = `${players[0]} you are on ${pieceOne.parentElement.getAttribute('data-type')} `;
         currentPlayer = players[1];
     } else {
         currentPosition2 += diceRoll;
@@ -96,10 +91,30 @@ function movePiece() {
         let currentSquare = squares[currentPosition2];
         currentSquare.appendChild(pieceTwo);
         currentPlayer = players[0];
+        message.innerHTML = `${players[1]} you are on ${pieceTwo.parentElement.getAttribute('data-type')}`;
     }
 }
 
 
+async function switchTurn() {
+    for (i = 0; i < 50; i++) {
+        if (players[0] === currentPlayer) {
+            message.innerHTML = `${players[0]} its your turn. Please roll the dice`;
+            await getUserInput();
+            currentPlayer = players[1];
+        } else {
+            message.innerHTML = `${players[1]} its your turn. Please roll the dice`;
+            await getUserInput();
+            currentPlayer = players[0];
+        }
+    }
+}
+
+var players, currentPlayer;
+(async () => {
+    players = await setPlayers();
+    currentPlayer = players[0];
+})();
 
 
 
