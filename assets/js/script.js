@@ -1,4 +1,6 @@
-
+/**
+ * Gets and returns user input.
+ */
 function getUserInput() {
     return new Promise(function (resolve) {
         document.getElementById("user-input").addEventListener("keydown", function (event) {
@@ -13,7 +15,9 @@ function getUserInput() {
 }
 
 let message = document.getElementById('game-message');
-// async allows the use of the "await" keyword
+/**
+ * Sets players names. 
+ */
 async function setPlayers() {
     message.innerHTML = `<p>Name of player One?</p>`;
     let player1 = await getUserInput();
@@ -28,6 +32,9 @@ async function setPlayers() {
 let roll = document.getElementById('roll');
 roll.addEventListener('click', rollDice);
 roll.addEventListener('click', movePiece);
+/**
+ * Rolls dice and changes the dice face acording to the randsom number rolled. 
+ */
 function rollDice() {
     let randomNum = Math.floor(Math.random() * 6) + 1;
     let dice = document.getElementById("dice");
@@ -72,6 +79,9 @@ const board = [
     'habitat-survey'
 ];
 
+/**
+ * Moves players pieces around the board. 
+ */
 function movePiece() {
     let diceRoll = rollDice();
     if (currentPlayer === players[0]) {
@@ -95,7 +105,9 @@ function movePiece() {
     }
 }
 
-
+/**
+ * Switches the turn depending on which players turn it is. 
+ */
 async function switchTurn() {
     for (i = 0; i < 50; i++) {
         if (players[0] === currentPlayer) {
@@ -111,6 +123,9 @@ async function switchTurn() {
 }
 
 var players, currentPlayer;
+/**
+ * calls the setPlayers function and sets currentPlayer
+ */
 (async () => {
     players = await setPlayers();
     currentPlayer = players[0];
