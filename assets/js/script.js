@@ -150,6 +150,33 @@ async function buySquare(currentPlayer) {
     }
 }
 
+async function checkIfOwned() {
+    if (player1Owned.includes(pieceTwo.parentElement.getAttribute('data-type')) || player2Owned.includes(pieceOne.parentElement.getAttribute('data-type'))) {
+        //squareOwned = true;
+        for (i = 0; i < 50; i++) {
+            if (player1Owned.includes(pieceTwo.parentElement.getAttribute('data-type'))) {
+                message.innerHTML = `<p>You Landed on your opponents square,${pieceTwo.parentElement.getAttribute('data-type')}, you have to pay them 5 people. Please enter ok to confirm!</p>`;
+                await getUserInput();
+                let people2 = parseInt(document.getElementById('player2').innerText);
+                let people1 = parseInt(document.getElementById('player1').innerText);
+                document.getElementById('player2').innerText = people2 - 5;
+                document.getElementById('player1').innerText = people1 + 5;
+                await switchTurn();
+            } if (player2Owned.includes(pieceOne.parentElement.getAttribute('data-type'))) {
+                message.innerHTML = `<p>You Landed on your opponents square,${pieceOne.parentElement.getAttribute('data-type')}, you have to pay them 5 people. Please enter ok to confirm!</p>`;
+                await getUserInput();
+                let people1 = parseInt(document.getElementById('player1').innerText);
+                let people2 = parseInt(document.getElementById('player2').innerText);
+                document.getElementById('player1').innerText = people1 - 5;
+                document.getElementById('player2').innerText = people2 + 5;
+                await switchTurn();
+            }
+        }
+    } else {
+        buySquare(currentPlayer);
+    }
+}
+
 
 var players, currentPlayer;
 /**
