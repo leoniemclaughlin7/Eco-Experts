@@ -1,3 +1,5 @@
+const sleep = ms => new Promise(res => setTimeout(res, ms));
+
 /**
  * Gets and returns user input.
  */
@@ -9,7 +11,7 @@ function getUserInput() {
             console.log(input);
             resolve(input);
         });
-        document.getElementById("user-input").value = "";
+        //document.getElementById("user-input").value = "";
     });
 
 }
@@ -92,6 +94,7 @@ function movePiece() {
         let currentSquare = squares[currentPosition1];
         currentSquare.appendChild(pieceOne);
         message.innerHTML = `${players[0]} you are on ${pieceOne.parentElement.getAttribute('data-type')} `;
+        checkIfOwned();
         currentPlayer = players[1];
     } else {
         currentPosition2 += diceRoll;
@@ -100,8 +103,9 @@ function movePiece() {
         }
         let currentSquare = squares[currentPosition2];
         currentSquare.appendChild(pieceTwo);
-        currentPlayer = players[0];
         message.innerHTML = `${players[1]} you are on ${pieceTwo.parentElement.getAttribute('data-type')}`;
+        checkIfOwned();
+        currentPlayer = players[0];
     }
 }
 
@@ -121,6 +125,31 @@ async function switchTurn() {
         }
     }
 }
+
+var player1Owned = [];
+var player2Owned = [];
+var squareOwned = false;
+async function buySquare(currentPlayer) {
+    await sleep(4000);
+    if (currentPlayer === players[0] && !squareOwned) {
+        message.innerHTML = `<p>Would you like to buy ${pieceOne.parentElement.getAttribute('data-type')} for 5 people?`;
+        let input = await getUserInput();
+        if (input === 'y') {
+            player1Owned.push(pieceOne.parentElement.getAttribute('data-type'));
+        } else {
+            console.log('you have not bought this square');
+        }
+    } if (currentPlayer === players[1] && !squareOwned) {
+        message.innerHTML = `<p>Would you like to buy ${pieceTwo.parentElement.getAttribute('data-type')} for 5 people?`;
+        let input = await getUserInput();
+        if (input === 'y') {
+            player2Owned.push(pieceTwo.parentElement.getAttribute('data-type'));
+        } else {
+            console.log('you have not bought this square');
+        }
+    }
+}
+
 
 var players, currentPlayer;
 /**
