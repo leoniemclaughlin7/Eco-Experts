@@ -90,7 +90,7 @@ function movePiece() {
         currentPosition1 += diceRoll;
         if (currentPosition1 >= board.length) {
             let people = parseInt(document.getElementById('player1').innerText);
-            document.getElementById('player1').innerText = people + 10;
+            document.getElementById('player1').innerText = people + 5;
             currentPosition1 -= board.length;
         }
         let currentSquare = squares[currentPosition1];
@@ -102,7 +102,7 @@ function movePiece() {
         currentPosition2 += diceRoll;
         if (currentPosition2 >= board.length) {
             let people = parseInt(document.getElementById('player2').innerText);
-            document.getElementById('player2').innerText = people + 10;
+            document.getElementById('player2').innerText = people + 5;
             currentPosition2 -= board.length;
         }
         let currentSquare = squares[currentPosition2];
@@ -166,6 +166,7 @@ async function buySquare(currentPlayer) {
  * if none of the above will allow player to buy square. 
  */
 async function checkIfOwned() {
+    checkWinner();
     if (currentPlayer === players[1] && player1Owned.includes(pieceTwo.parentElement.getAttribute('data-type'))) {
         message.innerHTML = `<p>${players[1]} you Landed on your opponents square,${pieceTwo.parentElement.getAttribute('data-type')}, you have to pay them 5 people. Please enter ok to confirm!</p>`;
         await getUserInput();
@@ -193,9 +194,23 @@ async function checkIfOwned() {
     }
 }
 
+async function checkWinner() {
+    if (document.getElementById('player1').innerText === '0') {
+        message.innerHTML = `<p>${players[1]} you have won the game</p>`;
+        await sleep(3000);
+        window.location.reload();
+    }
+    if (document.getElementById('player2').innerText === '0') {
+        message.innerHTML = `<p>${players[0]} you have won the game</p>`;
+        await sleep(3000);
+        window.location.reload();
+    }
+
+}
+
 var players, currentPlayer;
 /**
- * calls the setPlayers function and sets currentPlayer
+ * calls the setPlayers function and sets currentPlayer and then calls switchTurn. 
  */
 (async () => {
     players = await setPlayers();
