@@ -40,3 +40,7 @@ Happy coding!
 
 credits images 
 dice https://pngimg.com/image/54814 
+background wood image https://images.pexels.com/photos/82256/pexels-photo-82256.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1 
+city garden https://3.bp.blogspot.com/-kWMCA45vMqk/VN4pjF_79dI/AAAAAAAAGk0/8NZFQe3rh7Y/s1600/Welwyn%2BGarden%2BCity%2B-%2B01-10-11%2B018.JPG 
+earthship https://www.homestratosphere.com/wp-content/uploads/2020/11/Photo-collage-of-different-types-of-earthships-11242022-870x580.jpg 
+hydrophonics https://www.gardeningknowhow.com/wp-content/uploads/2021/01/hydroponics-plantation-farm-400x300.jpg  

@@ -1,3 +1,15 @@
+/* body {
+    background-image: url("../images/light-wood.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+} */
+
+h1 {
+    color: rgb(10, 126, 10);
+    text-align: center;
+    font-size: 300%;
+}
+
 #game-output {
     display: flex;
     justify-content: center;
@@ -39,12 +51,12 @@
 
 #piece-one {
     position: absolute;
-    top: 10px;
+    top: 25px;
     left: 10px;
     padding: 5px;
     background-color: rgb(7, 0, 0);
-    height: 35px;
-    width: 35px;
+    height: 25px;
+    width: 25px;
 }
 
 #piece-two {
@@ -53,8 +65,8 @@
     left: 10px;
     padding: 5px;
     background-color: rgb(250, 5, 5);
-    height: 35px;
-    width: 35px;
+    height: 25px;
+    width: 25px;
 }
 
 .score-area {

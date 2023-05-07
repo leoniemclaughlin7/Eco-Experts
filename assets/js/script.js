@@ -166,7 +166,6 @@ async function buySquare(currentPlayer) {
  * if none of the above will allow player to buy square. 
  */
 async function checkIfOwned() {
-    checkWinner();
     if (currentPlayer === players[1] && player1Owned.includes(pieceTwo.parentElement.getAttribute('data-type'))) {
         message.innerHTML = `<p>${players[1]} you Landed on your opponents square,${pieceTwo.parentElement.getAttribute('data-type')}, you have to pay them 5 people. Please enter ok to confirm!</p>`;
         await getUserInput();
@@ -193,16 +192,20 @@ async function checkIfOwned() {
         buySquare(currentPlayer);
     }
 }
+//const checkWinnerInterval = setInterval(checkWinner, 1000);
+setInterval(async () => {
+    await checkWinner();
+}, 1000);
 
 async function checkWinner() {
     if (document.getElementById('player1').innerText === '0') {
         message.innerHTML = `<p>${players[1]} you have won the game</p>`;
-        await sleep(3000);
+        await sleep(8000);
         window.location.reload();
     }
     if (document.getElementById('player2').innerText === '0') {
         message.innerHTML = `<p>${players[0]} you have won the game</p>`;
-        await sleep(3000);
+        await sleep(8000);
         window.location.reload();
     }
 
