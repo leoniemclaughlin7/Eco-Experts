@@ -82,13 +82,15 @@ const board = [
 ];
 
 /**
- * Moves players pieces around the board. 
+ * Moves players pieces around the board and adds 10 people to players score once they pass recharge. 
  */
 function movePiece() {
     let diceRoll = rollDice();
     if (currentPlayer === players[0]) {
         currentPosition1 += diceRoll;
         if (currentPosition1 >= board.length) {
+            let people = parseInt(document.getElementById('player1').innerText);
+            document.getElementById('player1').innerText = people + 10;
             currentPosition1 -= board.length;
         }
         let currentSquare = squares[currentPosition1];
@@ -99,6 +101,8 @@ function movePiece() {
     } else {
         currentPosition2 += diceRoll;
         if (currentPosition2 >= board.length) {
+            let people = parseInt(document.getElementById('player2').innerText);
+            document.getElementById('player2').innerText = people + 10;
             currentPosition2 -= board.length;
         }
         let currentSquare = squares[currentPosition2];
@@ -188,19 +192,6 @@ async function checkIfOwned() {
         buySquare(currentPlayer);
     }
 }
-
-
-//NEEDS MORE WORK 
-// function updatePeople() {
-//     if (currentPlayer === players[0]) {
-//         let people = parseInt(document.getElementById('player1').innerText);
-//         document.getElementById('player1').innerText = people - 5;
-//     } else {
-//         let people = parseInt(document.getElementById('player2').innerText);
-//         document.getElementById('player2').innerText = people - 5;
-//     }
-// }
-
 
 var players, currentPlayer;
 /**
