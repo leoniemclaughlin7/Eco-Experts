@@ -128,56 +128,62 @@ async function switchTurn() {
 
 var player1Owned = [];
 var player2Owned = [];
-var squareOwned = false;
+/**
+ * Gives the player the option to buy a square for a cost of 5 people. 
+ * @param {*} currentPlayer 
+ */
 async function buySquare(currentPlayer) {
     await sleep(4000);
-    if (currentPlayer === players[0] && !squareOwned) {
+    if (currentPlayer === players[0]) {
         message.innerHTML = `<p>Would you like to buy ${pieceOne.parentElement.getAttribute('data-type')} for 5 people?`;
         let input = await getUserInput();
         if (input === 'y') {
             player1Owned.push(pieceOne.parentElement.getAttribute('data-type'));
-            console.log(player1Owned);
+            let people = parseInt(document.getElementById('player1').innerText);
+            document.getElementById('player1').innerText = people - 5;
         } else {
             console.log('you have not bought this square');
-        }
-    } else if (currentPlayer === players[1] && !squareOwned) {
+        } currentPlayer = players[1];
+    } else if (currentPlayer === players[1]) {
         message.innerHTML = `<p>Would you like to buy ${pieceTwo.parentElement.getAttribute('data-type')} for 5 people?`;
         let input = await getUserInput();
         if (input === 'y') {
             player2Owned.push(pieceTwo.parentElement.getAttribute('data-type'));
-            console.log(player2Owned);
+            let people = parseInt(document.getElementById('player2').innerText);
+            document.getElementById('player2').innerText = people - 5;
         } else {
             console.log('you have not bought this square');
-        }
+        } currentPlayer = players[0];
     }
 }
 
+/**
+ * Checks if player is on opponents square, if player is on own square and 
+ * if none of the above will allow player to buy square. 
+ */
 async function checkIfOwned() {
-    if (player1Owned.includes(pieceTwo.parentElement.getAttribute('data-type'))) {
-        message.innerHTML = `<p>You Landed on your opponents square,${pieceTwo.parentElement.getAttribute('data-type')}, you have to pay them 5 people. Please enter ok to confirm!</p>`;
+    if (currentPlayer === players[1] && player1Owned.includes(pieceTwo.parentElement.getAttribute('data-type'))) {
+        message.innerHTML = `<p>${players[1]} you Landed on your opponents square,${pieceTwo.parentElement.getAttribute('data-type')}, you have to pay them 5 people. Please enter ok to confirm!</p>`;
         await getUserInput();
         let people2 = parseInt(document.getElementById('player2').innerText);
         let people1 = parseInt(document.getElementById('player1').innerText);
         document.getElementById('player2').innerText = people2 - 5;
         document.getElementById('player1').innerText = people1 + 5;
-        squareOwned = true;
-        //await switchTurn();
-
-    } else if (player2Owned.includes(pieceOne.parentElement.getAttribute('data-type'))) {
-        message.innerHTML = `<p>You Landed on your opponents square,${pieceOne.parentElement.getAttribute('data-type')}, you have to pay them 5 people. Please enter ok to confirm!</p>`;
+        currentPlayer === players[0];
+    } else if (currentPlayer === players[0] && player2Owned.includes(pieceOne.parentElement.getAttribute('data-type'))) {
+        message.innerHTML = `<p>${players[0]} you Landed on your opponents square,${pieceOne.parentElement.getAttribute('data-type')}, you have to pay them 5 people. Please enter ok to confirm!</p>`;
         await getUserInput();
         let people1 = parseInt(document.getElementById('player1').innerText);
         let people2 = parseInt(document.getElementById('player2').innerText);
         document.getElementById('player1').innerText = people1 - 5;
         document.getElementById('player2').innerText = people2 + 5;
-        squareOwned = true;
-        //await switchTurn();
-    } if (player1Owned.includes(pieceOne.parentElement.getAttribute('data-type')) && squareOwned) {
-        console.log('Player1 owns this square');
-        await switchTurn();
-    } else if (player2Owned.includes(pieceTwo.parentElement.getAttribute('data-type')) && squareOwned) {
-        console.log('Player2 owns this square');
-        await switchTurn();
+        currentPlayer === players[1];
+    } else if (currentPlayer === players[0] && player1Owned.includes(pieceOne.parentElement.getAttribute('data-type'))) {
+        message.innerHTML = `<p>${players[0]} you own ${pieceOne.parentElement.getAttribute('data-type')}. ${players[1]} please roll the dice</p>`;
+        currentPlayer = players[1];
+    } else if (currentPlayer === players[1] && player2Owned.includes(pieceTwo.parentElement.getAttribute('data-type'))) {
+        message.innerHTML = `<p>${players[1]} you own ${pieceTwo.parentElement.getAttribute('data-type')}. ${players[0]} please roll the dice</p>`;
+        currentPlayer = players[0];
     } else {
         buySquare(currentPlayer);
     }
