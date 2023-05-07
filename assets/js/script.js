@@ -35,7 +35,7 @@ let roll = document.getElementById('roll');
 roll.addEventListener('click', rollDice);
 roll.addEventListener('click', movePiece);
 /**
- * Rolls dice and changes the dice face acording to the randsom number rolled. 
+ * Rolls dice and changes the dice face acording to the random number rolled. 
  */
 function rollDice() {
     let randomNum = Math.floor(Math.random() * 6) + 1;
@@ -82,7 +82,7 @@ const board = [
 ];
 
 /**
- * Moves players pieces around the board and adds 10 people to players score once they pass recharge. 
+ * Moves players pieces around the board and adds 5 people to players score once they pass recharge. 
  */
 function movePiece() {
     let diceRoll = rollDice();
@@ -95,7 +95,7 @@ function movePiece() {
         }
         let currentSquare = squares[currentPosition1];
         currentSquare.appendChild(pieceOne);
-        message.innerHTML = `${players[0]} you are on ${pieceOne.parentElement.getAttribute('data-type')} `;
+        message.innerHTML = `<p>${players[0]} you are on ${pieceOne.parentElement.getAttribute('data-type')}</p>`;
         checkIfOwned();
         currentPlayer = players[1];
     } else {
@@ -107,7 +107,7 @@ function movePiece() {
         }
         let currentSquare = squares[currentPosition2];
         currentSquare.appendChild(pieceTwo);
-        message.innerHTML = `${players[1]} you are on ${pieceTwo.parentElement.getAttribute('data-type')}`;
+        message.innerHTML = `<p>${players[1]} you are on ${pieceTwo.parentElement.getAttribute('data-type')}</p>`;
         checkIfOwned();
         currentPlayer = players[0];
     }
@@ -119,11 +119,11 @@ function movePiece() {
 async function switchTurn() {
     for (i = 0; i < 50; i++) {
         if (players[0] === currentPlayer) {
-            message.innerHTML = `${players[0]} its your turn. Please roll the dice`;
+            message.innerHTML = `<p>${players[0]} its your turn. Please roll the dice</p>`;
             await getUserInput();
             currentPlayer = players[1];
         } else {
-            message.innerHTML = `${players[1]} its your turn. Please roll the dice`;
+            message.innerHTML = `<p>${players[1]} its your turn. Please roll the dice</p>`;
             await getUserInput();
             currentPlayer = players[0];
         }
@@ -192,7 +192,7 @@ async function checkIfOwned() {
         buySquare(currentPlayer);
     }
 }
-//const checkWinnerInterval = setInterval(checkWinner, 1000);
+
 setInterval(async () => {
     await checkWinner();
 }, 1000);

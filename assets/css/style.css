@@ -54,7 +54,7 @@ h1 {
     top: 25px;
     left: 10px;
     padding: 5px;
-    background-color: rgb(7, 0, 0);
+    background-color: rgb(248, 239, 70);
     height: 25px;
     width: 25px;
 }
@@ -64,7 +64,7 @@ h1 {
     top: 65px;
     left: 10px;
     padding: 5px;
-    background-color: rgb(250, 5, 5);
+    background-color: rgb(64, 245, 79);
     height: 25px;
     width: 25px;
 }
@@ -78,4 +78,9 @@ h1 {
 .scores {
     display: inline-block;
     padding: 25px;
+}
+
+#game-message>p {
+    color: darkgreen;
+    font-size: 150%;
 }

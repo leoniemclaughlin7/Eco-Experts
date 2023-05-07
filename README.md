@@ -48,5 +48,10 @@ ev car https://www.carscoops.com/wp-content/uploads/2018/04/Everus-EV-Concept-Ho
 greenway <https://www.dullesgreenway.com/wp-content/uploads/2020/08/DJI_0211-scaled.jpg>
 cyclepath https://s.hdnux.com/photos/01/14/16/53/19983044/24/1200x0.jpg 
 greenspace <https://clipground.com/images/ecology-png-1.png>
-hydroelectric https://i0.wp.com/electrek.co/wp-content/uploads/sites/3/2015/09/hydropower-plant-e1441130021483.jpg?w=1500&quality=82&strip=all&ssl=1 
+hydroelectric <https://parsec-accelerator.eu/insight/pumped-storage-hydroelectricity/>
+solar-farm <https://calpolynews.calpoly.edu/news_releases/2017/January/Solar>
+community-work <https://www.rd.com/wp-content/uploads/2017/05/shutterstock_634491785.jpg?resize=700>,466 
+habitat-survey https://animals.sandiegozoo.org/habitats 
+
+
  
